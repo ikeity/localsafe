@@ -21,14 +21,23 @@ try{
     $compiler=[CodeDom.Compiler.CompilerParameters]::new()
     $compiler.GenerateExecutable=$true;$compiler.GenerateInMemory=$false
     $compiler.OutputAssembly=Join-Path $root 'LocalSafe.exe'
-    $compiler.CompilerOptions='/target:winexe /win32icon:"'+(Join-Path $root 'src\assets\LocalSafe.ico')+'"'
+    $compiler.CompilerOptions='/target:winexe /platform:x64 /win32icon:"'+(Join-Path $root 'src\assets\LocalSafe.ico')+'"'
     foreach($assembly in @('System.dll','System.Core.dll','System.Windows.Forms.dll',[System.Management.Automation.PowerShell].Assembly.Location)){[void]$compiler.ReferencedAssemblies.Add($assembly)}
     Add-Type -Path @((Join-Path $root 'src\LocalSafe.Launcher.cs'),(Join-Path $root 'src\LocalSafe.Instance.cs')) -CompilerParameters $compiler
     $forbidden=@(Get-ChildItem -LiteralPath $root -Recurse -File | Where-Object {$_.Name -match '\.(local|report|snapshot)\.json$|\.(log|pdb|tmp)$'})
     if($forbidden.Count){throw 'Local/private or debug artifacts entered the package.'}
     $zip=Join-Path $OutputDirectory ('LocalSafe-v'+$Version+'-windows-x64.zip')
     if(Test-Path -LiteralPath $zip){Remove-Item -LiteralPath $zip}
-    [IO.Compression.ZipFile]::CreateFromDirectory($stage,$zip,[IO.Compression.CompressionLevel]::Optimal,$false)
+    $zipStream=[IO.File]::Create($zip)
+    $package=[IO.Compression.ZipArchive]::new($zipStream,[IO.Compression.ZipArchiveMode]::Create,$false,[Text.Encoding]::UTF8)
+    try{
+        foreach($file in Get-ChildItem -LiteralPath $root -Recurse -File | Sort-Object FullName){
+            $entryName=$file.FullName.Substring($stage.Length+1).Replace('\','/')
+            $entry=$package.CreateEntry($entryName,[IO.Compression.CompressionLevel]::Optimal)
+            $inputStream=[IO.File]::OpenRead($file.FullName);$outputStream=$entry.Open()
+            try{$inputStream.CopyTo($outputStream)}finally{$outputStream.Dispose();$inputStream.Dispose()}
+        }
+    }finally{$package.Dispose();$zipStream.Dispose()}
     $hash=(Get-FileHash -LiteralPath $zip -Algorithm SHA256).Hash.ToLowerInvariant()
     [IO.File]::WriteAllText((Join-Path $OutputDirectory 'SHA256SUMS.txt'),($hash+'  '+[IO.Path]::GetFileName($zip)+"`n"),[Text.UTF8Encoding]::new($false))
     [pscustomobject]@{Commit=$commit;Archive=$zip;SHA256=$hash}
