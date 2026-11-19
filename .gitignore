@@ -1,0 +1,20 @@
+# Local inventories may contain account names, paths, and installed software.
+/.local/
+/reports/
+/snapshots/
+/logs/
+/work/
+*.local.json
+*.snapshot.json
+*.report.json
+*.log
+*.tmp
+*.bak
+.vs/
+.idea/
+bin/
+obj/
+TestResults/
+/dist/
+Thumbs.db
+Desktop.ini

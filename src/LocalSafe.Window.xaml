@@ -1,0 +1,123 @@
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="LocalSafe" Width="1280" Height="820" MinWidth="1040" MinHeight="680" Background="White" FontFamily="Microsoft YaHei UI" UseLayoutRounding="True" SnapsToDevicePixels="True" TextOptions.TextFormattingMode="Display" FontSize="14" Foreground="#202326" WindowStartupLocation="CenterScreen">
+ <Window.Resources>
+  <Style TargetType="Button"><Setter Property="Background" Value="White"/><Setter Property="Foreground" Value="#41464B"/><Setter Property="BorderBrush" Value="#E0E3E5"/><Setter Property="BorderThickness" Value="1"/><Setter Property="Padding" Value="16,8"/><Setter Property="Cursor" Value="Hand"/><Setter Property="Template"><Setter.Value><ControlTemplate TargetType="Button"><Border x:Name="Surface" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="8" Padding="{TemplateBinding Padding}"><ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><ControlTemplate.Triggers><Trigger Property="IsMouseOver" Value="True"><Setter TargetName="Surface" Property="Opacity" Value="0.78"/></Trigger><Trigger Property="IsKeyboardFocused" Value="True"><Setter TargetName="Surface" Property="BorderBrush" Value="#17635B"/></Trigger><Trigger Property="IsEnabled" Value="False"><Setter TargetName="Surface" Property="Opacity" Value="0.4"/></Trigger></ControlTemplate.Triggers></ControlTemplate></Setter.Value></Setter></Style>
+  <Style TargetType="TextBox"><Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden"/><Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden"/><Setter Property="Padding" Value="12,10"/><Setter Property="BorderBrush" Value="#DDE1E3"/><Setter Property="VerticalContentAlignment" Value="Center"/><Setter Property="Template"><Setter.Value><ControlTemplate TargetType="TextBox"><Border x:Name="Surface" CornerRadius="8" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1"><ScrollViewer x:Name="PART_ContentHost" HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}" VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"/></Border><ControlTemplate.Triggers><Trigger Property="IsKeyboardFocused" Value="True"><Setter TargetName="Surface" Property="BorderBrush" Value="#17635B"/></Trigger></ControlTemplate.Triggers></ControlTemplate></Setter.Value></Setter></Style>
+  <Style TargetType="ListBoxItem"><Setter Property="HorizontalContentAlignment" Value="Stretch"/><Setter Property="Padding" Value="12"/><Setter Property="Margin" Value="0,2"/><Setter Property="Template"><Setter.Value><ControlTemplate TargetType="ListBoxItem"><Border x:Name="Surface" Background="Transparent" CornerRadius="8" Padding="{TemplateBinding Padding}"><ContentPresenter/></Border><ControlTemplate.Triggers><Trigger Property="IsMouseOver" Value="True"><Setter TargetName="Surface" Property="Background" Value="#F0F2F2"/></Trigger><Trigger Property="IsSelected" Value="True"><Setter TargetName="Surface" Property="Background" Value="#E4EFEC"/></Trigger><Trigger Property="IsKeyboardFocused" Value="True"><Setter TargetName="Surface" Property="BorderBrush" Value="#17635B"/><Setter TargetName="Surface" Property="BorderThickness" Value="1"/></Trigger></ControlTemplate.Triggers></ControlTemplate></Setter.Value></Setter></Style>
+  <Style TargetType="DataGridColumnHeader"><Setter Property="Background" Value="#FAFBFB"/><Setter Property="Foreground" Value="#646B70"/><Setter Property="FontWeight" Value="Normal"/><Setter Property="Padding" Value="12,10"/><Setter Property="BorderThickness" Value="0,0,0,1"/><Setter Property="BorderBrush" Value="#ECEEEF"/></Style>
+  <Style TargetType="DataGridCell"><Setter Property="Padding" Value="12,10"/><Setter Property="BorderThickness" Value="0"/><Setter Property="Template"><Setter.Value><ControlTemplate TargetType="DataGridCell"><Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}"><ContentPresenter VerticalAlignment="Center"/></Border></ControlTemplate></Setter.Value></Setter><Style.Triggers><Trigger Property="IsSelected" Value="True"><Setter Property="Background" Value="Transparent"/><Setter Property="Foreground" Value="#202326"/></Trigger><Trigger Property="IsKeyboardFocusWithin" Value="True"><Setter Property="Background" Value="#DCECE7"/></Trigger></Style.Triggers></Style>
+  <Style TargetType="DataGridRow"><Setter Property="MinHeight" Value="44"/><Style.Triggers><Trigger Property="IsMouseOver" Value="True"><Setter Property="Background" Value="#F7F9F8"/></Trigger><Trigger Property="IsSelected" Value="True"><Setter Property="Background" Value="#EDF4F1"/></Trigger></Style.Triggers></Style>
+  <Style TargetType="TabItem"><Setter Property="Foreground" Value="#646B70"/><Setter Property="Template"><Setter.Value><ControlTemplate TargetType="TabItem"><Border x:Name="Tab" Padding="0,12" Margin="0,0,24,0" BorderThickness="0,0,0,2" BorderBrush="Transparent"><ContentPresenter ContentSource="Header"/></Border><ControlTemplate.Triggers><Trigger Property="IsSelected" Value="True"><Setter TargetName="Tab" Property="BorderBrush" Value="#17635B"/><Setter Property="Foreground" Value="#17635B"/></Trigger><Trigger Property="IsKeyboardFocused" Value="True"><Setter TargetName="Tab" Property="Background" Value="#E4EFEC"/></Trigger></ControlTemplate.Triggers></ControlTemplate></Setter.Value></Setter></Style>
+  <Style TargetType="ComboBox"><Setter Property="Background" Value="White"/><Setter Property="Foreground" Value="#41464B"/><Setter Property="BorderBrush" Value="#E0E3E5"/><Setter Property="Template"><Setter.Value><ControlTemplate TargetType="ComboBox"><Grid><ToggleButton Focusable="False" IsChecked="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"><ToggleButton.Template><ControlTemplate TargetType="ToggleButton"><Border CornerRadius="8" BorderBrush="#E0E3E5" BorderThickness="1" Background="White"><Grid Margin="12,0"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="16"/></Grid.ColumnDefinitions><Path Grid.Column="1" Data="M 3,5 L 7,9 L 11,5" Stroke="#646B70" StrokeThickness="1.5" VerticalAlignment="Center" HorizontalAlignment="Right"/></Grid></Border></ControlTemplate></ToggleButton.Template></ToggleButton><ContentPresenter IsHitTestVisible="False" Margin="12,0,32,0" VerticalAlignment="Center" Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"/><Popup x:Name="PART_Popup" IsOpen="{TemplateBinding IsDropDownOpen}" Placement="Bottom" AllowsTransparency="True" Focusable="False"><Border Background="White" CornerRadius="8" BorderBrush="#E0E3E5" BorderThickness="1" Padding="4" MinWidth="160" Margin="0,4,0,0"><ScrollViewer MaxHeight="320"><ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained"/></ScrollViewer></Border></Popup></Grid></ControlTemplate></Setter.Value></Setter></Style>
+  <Style TargetType="ComboBoxItem"><Setter Property="Padding" Value="12,8"/><Setter Property="Template"><Setter.Value><ControlTemplate TargetType="ComboBoxItem"><Border x:Name="Item" CornerRadius="4" Padding="{TemplateBinding Padding}"><ContentPresenter/></Border><ControlTemplate.Triggers><Trigger Property="IsHighlighted" Value="True"><Setter TargetName="Item" Property="Background" Value="#E4EFEC"/></Trigger></ControlTemplate.Triggers></ControlTemplate></Setter.Value></Setter></Style>
+  <Style x:Key="IconAction" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+   <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="Button">
+    <Border x:Name="Surface" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="8" Padding="{TemplateBinding Padding}"><StackPanel Orientation="Horizontal"><Image Source="{TemplateBinding Tag}" Width="18" Height="18" Margin="0,0,8,0"/><ContentPresenter VerticalAlignment="Center"/></StackPanel></Border>
+    <ControlTemplate.Triggers><Trigger Property="IsMouseOver" Value="True"><Setter TargetName="Surface" Property="Opacity" Value="0.78"/></Trigger><Trigger Property="IsKeyboardFocused" Value="True"><Setter TargetName="Surface" Property="BorderBrush" Value="#17635B"/></Trigger><Trigger Property="IsEnabled" Value="False"><Setter TargetName="Surface" Property="Opacity" Value="0.4"/></Trigger></ControlTemplate.Triggers>
+   </ControlTemplate></Setter.Value></Setter>
+  </Style>
+  <Style x:Key="AppImage" TargetType="Image">
+   <Setter Property="Width" Value="32"/><Setter Property="Height" Value="32"/><Setter Property="Source" Value="{Binding IconSource}"/>
+   <Style.Triggers><DataTrigger Binding="{Binding IconSource}" Value="{x:Null}"><Setter Property="Source" Value="{DynamicResource Icon.package.Default}"/></DataTrigger></Style.Triggers>
+  </Style>
+ </Window.Resources>
+ <Grid>
+  <Grid.ColumnDefinitions><ColumnDefinition Width="304"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+  <Border Background="#F8F9F9" BorderBrush="#E6E8E9" BorderThickness="0,0,1,0">
+   <Grid Margin="20,24,20,16">
+    <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+    <StackPanel Orientation="Horizontal" Margin="4,0,0,24">
+     <Image Source="{DynamicResource Icon.shield-check.Accent}" Width="28" Height="28" Margin="0,0,12,0"/>
+     <TextBlock Text="LocalSafe" FontSize="22" FontWeight="SemiBold"/>
+    </StackPanel>
+    <DockPanel Grid.Row="1" Margin="4,0,0,12">
+     <Button x:Name="Refresh" DockPanel.Dock="Right" Padding="8" Background="Transparent" BorderThickness="0" ToolTip="刷新软件列表" AutomationProperties.Name="刷新已安装软件"><Image Source="{DynamicResource Icon.refresh-cw.Default}" Width="16" Height="16"/></Button>
+     <TextBlock Text="已安装软件" VerticalAlignment="Center" FontWeight="Medium"/>
+    </DockPanel>
+    <Grid Grid.Row="2" Margin="0,0,0,12">
+     <TextBox x:Name="Search" Background="White" Padding="36,10,12,10" AutomationProperties.Name="搜索软件或发布者"/>
+     <Image Source="{DynamicResource Icon.search.Default}" Width="16" Height="16" HorizontalAlignment="Left" Margin="12,0,0,0" IsHitTestVisible="False"/>
+     <TextBlock x:Name="SearchHint" Text="搜索软件" Foreground="#697176" Margin="36,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False"/>
+    </Grid>
+    <Grid Grid.Row="3">
+     <ListBox x:Name="Programs" Background="Transparent" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling" AutomationProperties.Name="已安装软件列表">
+      <ListBox.ItemTemplate><DataTemplate>
+       <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="44"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+        <Image Style="{StaticResource AppImage}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+        <StackPanel Grid.Column="1"><TextBlock Text="{Binding Name}" TextTrimming="CharacterEllipsis" ToolTip="{Binding Name}"/><TextBlock Text="{Binding Subtitle}" FontSize="12" Foreground="#697176" Margin="0,4,0,0" TextTrimming="CharacterEllipsis"/></StackPanel>
+       </Grid>
+      </DataTemplate></ListBox.ItemTemplate>
+     </ListBox>
+     <TextBlock x:Name="ListEmpty" Text="正在发现已安装软件…" Foreground="#697176" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    </Grid>
+    <DockPanel Grid.Row="4" Margin="4,16,0,0"><Image Source="{DynamicResource Icon.monitor.Default}" Width="14" Height="14" Margin="0,0,8,0" DockPanel.Dock="Left"/><TextBlock x:Name="CatalogStatus" Text="读取本机安装记录" FontSize="12" Foreground="#697176" TextWrapping="Wrap"/></DockPanel>
+   </Grid>
+  </Border>
+  <Grid Grid.Column="1" Margin="32,24,32,16">
+   <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+   <DockPanel Margin="0,0,0,24">
+    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" HorizontalAlignment="Right">
+     <Button x:Name="Save" IsEnabled="False" Margin="0,0,8,0" AutomationProperties.Name="保存检查结果"><StackPanel Orientation="Horizontal"><Image Source="{DynamicResource Icon.download.Default}" Width="16" Height="16" Margin="0,0,8,0"/><TextBlock Text="保存"/></StackPanel></Button>
+     <Button x:Name="Tools" Padding="10" ToolTip="更多工具" AutomationProperties.Name="快照和其他检查工具">
+      <Image Source="{DynamicResource Icon.ellipsis.Default}" Width="18" Height="18"/>
+      <Button.ContextMenu><ContextMenu><MenuItem x:Name="Snapshot" Header="保存系统快照"/><MenuItem x:Name="Compare" Header="比较两次快照"/><MenuItem x:Name="LastUninstall" Header="上次卸载记录…"/><Separator/><MenuItem x:Name="Browse" Header="检查其他目录…"/></ContextMenu></Button.ContextMenu>
+     </Button>
+    </StackPanel>
+   </DockPanel>
+   <Grid Grid.Row="1" Margin="0,0,0,24">
+    <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+    <StackPanel>
+     <DockPanel>
+      <Border Width="64" Height="64" Background="#F5F7F6" CornerRadius="12" Margin="0,0,16,0" DockPanel.Dock="Left"><Image x:Name="AppIcon" Source="{DynamicResource Icon.package.Default}" Width="44" Height="44"/></Border>
+      <StackPanel VerticalAlignment="Center"><TextBlock x:Name="AppName" Text="已安装软件" FontSize="28" FontWeight="Medium" TextTrimming="CharacterEllipsis"/><TextBlock x:Name="AppMeta" Text="正在读取软件记录" Foreground="#697176" Margin="0,6,0,0" TextTrimming="CharacterEllipsis"/></StackPanel>
+     </DockPanel>
+     <DockPanel Margin="0,16,0,0"><Image Source="{DynamicResource Icon.folder.Default}" Width="16" Height="16" Margin="0,0,8,0" DockPanel.Dock="Left"/><TextBlock x:Name="AppPath" FontSize="12" Foreground="#697176" TextTrimming="CharacterEllipsis"/></DockPanel>
+    </StackPanel>
+    <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0,0,16">
+     <Button x:Name="Rescan" IsEnabled="False" Margin="0,0,8,0" AutomationProperties.Name="重新检查软件关联"><StackPanel Orientation="Horizontal"><Image Source="{DynamicResource Icon.scan-search.Default}" Width="18" Height="18" Margin="0,0,8,0"/><TextBlock Text="重新检查"/></StackPanel></Button>
+     <Button x:Name="Uninstall" IsEnabled="False" Background="#17635B" Foreground="White" BorderBrush="#17635B" ToolTip="打开卸载流程，先预览命令再确认启动" AutomationProperties.Name="卸载所选软件"><StackPanel Orientation="Horizontal"><Image Source="{DynamicResource Icon.trash.Light}" Width="18" Height="18" Margin="0,0,8,0"/><TextBlock Text="卸载…"/></StackPanel></Button>
+    </StackPanel>
+   </Grid>
+   <Border Grid.Row="2" Background="#F7F9F8" CornerRadius="12" Margin="0,0,0,20" Padding="20,16">
+    <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+     <DockPanel><Image Source="{DynamicResource Icon.link.Accent}" Width="20" Height="20" Margin="0,0,12,0" DockPanel.Dock="Left"/><StackPanel><TextBlock x:Name="PathCount" Text="—" FontSize="28" Foreground="#17635B"/><TextBlock Text="路径关联" Foreground="#646B70" FontSize="12" Margin="0,4,0,0"/></StackPanel></DockPanel>
+     <DockPanel Grid.Column="1"><Image Source="{DynamicResource Icon.layers.Default}" Width="20" Height="20" Margin="0,0,12,0" DockPanel.Dock="Left"/><StackPanel><TextBlock x:Name="ComponentCount" Text="—" FontSize="28"/><TextBlock Text="组件匹配" Foreground="#646B70" FontSize="12" Margin="0,4,0,0"/></StackPanel></DockPanel>
+     <DockPanel Grid.Column="2"><Image Source="{DynamicResource Icon.search.Default}" Width="20" Height="20" Margin="0,0,12,0" DockPanel.Dock="Left"/><StackPanel><TextBlock x:Name="NameCount" Text="—" FontSize="28"/><TextBlock Text="名称候选" Foreground="#646B70" FontSize="12" Margin="0,4,0,0"/></StackPanel></DockPanel>
+    </Grid>
+   </Border>
+   <TabControl x:Name="Tabs" Grid.Row="3" BorderThickness="0" Background="White" Padding="0,12,0,0">
+    <TabItem AutomationProperties.Name="关联组件"><TabItem.Header><StackPanel Orientation="Horizontal"><Image Source="{DynamicResource Icon.boxes.Default}" Width="16" Height="16" Margin="0,0,8,0"/><TextBlock Text="关联组件"/></StackPanel></TabItem.Header>
+     <Grid><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+      <ListBox x:Name="KindFilter" BorderThickness="0" Background="Transparent" Margin="0,0,0,8" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" AutomationProperties.Name="按组件类型筛选">
+       <ListBox.ItemsPanel><ItemsPanelTemplate><WrapPanel/></ItemsPanelTemplate></ListBox.ItemsPanel>
+       <ListBox.ItemContainerStyle><Style TargetType="ListBoxItem"><Setter Property="Padding" Value="8"/><Setter Property="Margin" Value="0,0,4,4"/><Setter Property="Foreground" Value="#646B70"/><Setter Property="FontSize" Value="13"/><Setter Property="Template"><Setter.Value><ControlTemplate TargetType="ListBoxItem"><Border x:Name="Item" Background="Transparent" CornerRadius="8" Padding="{TemplateBinding Padding}"><ContentPresenter/></Border><ControlTemplate.Triggers><Trigger Property="IsSelected" Value="True"><Setter TargetName="Item" Property="Background" Value="#E4EFEC"/><Setter Property="Foreground" Value="#17635B"/></Trigger><Trigger Property="IsMouseOver" Value="True"><Setter TargetName="Item" Property="Background" Value="#F0F3F1"/></Trigger><Trigger Property="IsKeyboardFocused" Value="True"><Setter TargetName="Item" Property="BorderBrush" Value="#17635B"/><Setter TargetName="Item" Property="BorderThickness" Value="1"/></Trigger></ControlTemplate.Triggers></ControlTemplate></Setter.Value></Setter></Style></ListBox.ItemContainerStyle>
+       <ListBoxItem Tag="All" IsSelected="True" AutomationProperties.Name="全部类型"><StackPanel Orientation="Horizontal"><Image Source="{DynamicResource Icon.boxes.Default}" Width="16" Height="16" Margin="0,0,8,0"/><TextBlock Text="全部"/></StackPanel></ListBoxItem>
+       <ListBoxItem Tag="Service" AutomationProperties.Name="服务"><StackPanel Orientation="Horizontal"><Image Source="{DynamicResource Icon.settings.Default}" Width="16" Height="16" Margin="0,0,8,0"/><TextBlock Text="服务"/></StackPanel></ListBoxItem>
+       <ListBoxItem Tag="Drivers" AutomationProperties.Name="驱动与设备"><StackPanel Orientation="Horizontal"><Image Source="{DynamicResource Icon.cpu.Default}" Width="16" Height="16" Margin="0,0,8,0"/><TextBlock Text="驱动"/></StackPanel></ListBoxItem>
+       <ListBoxItem Tag="StartupTasks" AutomationProperties.Name="启动项与任务"><StackPanel Orientation="Horizontal"><Image Source="{DynamicResource Icon.power.Default}" Width="16" Height="16" Margin="0,0,8,0"/><TextBlock Text="启动项"/></StackPanel></ListBoxItem>
+       <ListBoxItem Tag="Firewall" AutomationProperties.Name="防火墙"><StackPanel Orientation="Horizontal"><Image Source="{DynamicResource Icon.shield.Default}" Width="16" Height="16" Margin="0,0,8,0"/><TextBlock Text="防火墙"/></StackPanel></ListBoxItem>
+       <ListBoxItem Tag="Registry" AutomationProperties.Name="注册表与卸载登记"><StackPanel Orientation="Horizontal"><Image Source="{DynamicResource Icon.database.Default}" Width="16" Height="16" Margin="0,0,8,0"/><TextBlock Text="注册表"/></StackPanel></ListBoxItem>
+       <ListBoxItem Tag="Files" AutomationProperties.Name="文件与目录"><StackPanel Orientation="Horizontal"><Image Source="{DynamicResource Icon.folder.Default}" Width="16" Height="16" Margin="0,0,8,0"/><TextBlock Text="文件"/></StackPanel></ListBoxItem>
+       <ListBoxItem Tag="Process" AutomationProperties.Name="进程"><StackPanel Orientation="Horizontal"><Image Source="{DynamicResource Icon.layers.Default}" Width="16" Height="16" Margin="0,0,8,0"/><TextBlock Text="进程"/></StackPanel></ListBoxItem>
+      </ListBox>
+      <TextBlock x:Name="ResultCount" Grid.Row="1" Text="等待检查" Foreground="#697176" FontSize="12" Margin="0,0,0,12"/>
+      <Grid Grid.Row="2">
+       <DataGrid x:Name="Results" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserResizeRows="False" HeadersVisibility="Column" RowHeaderWidth="0" BorderThickness="0" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#F0F1F2" SelectionMode="Single" SelectionUnit="FullRow" Background="White" EnableRowVirtualization="True" AutomationProperties.Name="软件关联组件">
+        <DataGrid.Columns>
+         <DataGridTemplateColumn Header="组件" Width="*" MinWidth="220"><DataGridTemplateColumn.CellTemplate><DataTemplate>
+          <DockPanel><Border Width="36" Height="36" Background="#F2F5F3" CornerRadius="8" DockPanel.Dock="Left" Margin="0,0,12,0" VerticalAlignment="Center"><Image Source="{Binding TypeIcon}" Width="20" Height="20" ToolTip="{Binding KindLabel}" AutomationProperties.Name="{Binding KindLabel}"/></Border><StackPanel><TextBlock Text="{Binding Name}" TextTrimming="CharacterEllipsis"/><TextBlock Text="{Binding Reference}" FontSize="12" Foreground="#697176" Margin="0,4,0,0" TextTrimming="CharacterEllipsis" ToolTip="{Binding Reference}"/></StackPanel></DockPanel>
+         </DataTemplate></DataGridTemplateColumn.CellTemplate></DataGridTemplateColumn>
+         <DataGridTextColumn Header="依据" Binding="{Binding EvidenceLabel}" Width="104"/>
+         <DataGridTemplateColumn Header="状态" Width="96"><DataGridTemplateColumn.CellTemplate><DataTemplate><StackPanel Orientation="Horizontal" VerticalAlignment="Center"><Ellipse Width="6" Height="6" Fill="{Binding StatusColor}" Margin="0,0,8,0"/><TextBlock Text="{Binding StateLabel}"/></StackPanel></DataTemplate></DataGridTemplateColumn.CellTemplate></DataGridTemplateColumn>
+        </DataGrid.Columns>
+       </DataGrid>
+       <TextBlock x:Name="ResultEmpty" Text="正在读取系统记录…" Foreground="#697176" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" MaxWidth="400"/>
+      </Grid>
+      <Expander x:Name="EvidencePanel" Grid.Row="3" Margin="0,12,0,0" IsEnabled="False"><Expander.Header><StackPanel Orientation="Horizontal"><Image Source="{DynamicResource Icon.link.Default}" Width="16" Height="16" Margin="0,0,8,0"/><TextBlock Text="证据详情"/></StackPanel></Expander.Header><TextBox x:Name="EvidenceText" IsReadOnly="True" TextWrapping="Wrap" MaxHeight="160" VerticalScrollBarVisibility="Auto" BorderThickness="0" Background="#F7F9F8" AutomationProperties.Name="当前组件的关联证据"/></Expander>
+     </Grid>
+    </TabItem>
+    <TabItem AutomationProperties.Name="扫描范围"><TabItem.Header><StackPanel Orientation="Horizontal"><Image Source="{DynamicResource Icon.scan-search.Default}" Width="16" Height="16" Margin="0,0,8,0"/><TextBlock Text="扫描范围"/></StackPanel></TabItem.Header><TextBox x:Name="Coverage" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" BorderThickness="0" Text="检查完成后显示覆盖范围" AutomationProperties.Name="扫描覆盖及限制"/></TabItem>
+   </TabControl>
+   <StackPanel Grid.Row="4" Margin="0,16,0,0"><ProgressBar x:Name="Progress" Height="2" IsIndeterminate="True" Foreground="#17635B" Background="#EDF0EF" BorderThickness="0" Margin="0,0,0,12"/><DockPanel><Image Source="{DynamicResource Icon.clock.Default}" Width="14" Height="14" Margin="0,0,8,0" DockPanel.Dock="Left"/><TextBlock x:Name="Status" Text="正在发现软件…" FontSize="12" Foreground="#697176" TextWrapping="Wrap"/></DockPanel></StackPanel>
+  </Grid>
+ </Grid>
+</Window>
